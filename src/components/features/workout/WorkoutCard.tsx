@@ -1,0 +1,117 @@
+import React from 'react';
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  LinearProgress,
+  Chip,
+} from '@mui/material';
+import { keyframes } from '@mui/system';
+import { Exercise } from '../../../types/workout';
+
+interface WorkoutCardProps {
+  name: string;
+  exercise: Exercise;
+  completed?: boolean;
+}
+
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+// قاموس لصور التمارين - يمكن توسيعه حسب الحاجة
+const exerciseImages: Record<string, string> = {
+  'bench press': 'https://api.exercisedb.io/image/bench-press.jpg',
+  'squat': 'https://api.exercisedb.io/image/squat.jpg',
+  'deadlift': 'https://api.exercisedb.io/image/deadlift.jpg',
+  // يمكن إضافة المزيد من التمارين هنا
+  'default': 'https://api.exercisedb.io/image/default-exercise.jpg'
+};
+
+const WorkoutCard: React.FC<WorkoutCardProps> = ({
+  name,
+  exercise,
+  completed = false,
+}) => {
+  const getExerciseImage = (exerciseName: string) => {
+    const normalizedName = exerciseName.toLowerCase();
+    return exerciseImages[normalizedName] || exerciseImages.default;
+  };
+
+  return (
+    <Card
+      sx={{
+        minWidth: 275,
+        position: 'relative',
+        overflow: 'hidden',
+        transition: 'all 0.3s ease-in-out',
+        '&:hover': {
+          transform: 'translateY(-5px)',
+          boxShadow: 6,
+          animation: `${pulseAnimation} 1s ease-in-out`,
+        },
+      }}
+    >
+      <CardMedia
+        component="img"
+        height="200"
+        image={getExerciseImage(name)}
+        alt={name}
+        sx={{ objectFit: 'cover' }}
+      />
+      
+      <CardContent>
+        <Typography variant="h6" component="div" gutterBottom>
+          {name}
+        </Typography>
+        
+        <Box sx={{ mb: 2 }}>
+          <Typography color="text.secondary">
+            {exercise.sets} sets × {exercise.reps} reps
+          </Typography>
+          {exercise.weight && (
+            <Typography color="text.secondary">
+              Weight: {exercise.weight} kg
+            </Typography>
+          )}
+        </Box>
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+          <Chip
+            label={completed ? 'Completed' : 'Pending'}
+            color={completed ? 'success' : 'default'}
+            size="small"
+          />
+        </Box>
+
+        <Box sx={{ width: '100%' }}>
+          <LinearProgress
+            variant="determinate"
+            value={completed ? 100 : 0}
+            sx={{
+              height: 8,
+              borderRadius: 5,
+              backgroundColor: '#e0e0e0',
+              '& .MuiLinearProgress-bar': {
+                backgroundColor: completed ? '#4caf50' : '#1976d2',
+                borderRadius: 5,
+              },
+            }}
+          />
+        </Box>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default WorkoutCard;

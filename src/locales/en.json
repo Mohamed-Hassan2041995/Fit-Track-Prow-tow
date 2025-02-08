@@ -1,0 +1,21 @@
+{
+  "app.title": "Fitness Training Management",
+  "dashboard.title": "Dashboard",
+  "workouts.title": "Workouts",
+  "nutrition.title": "Nutrition",
+  "settings.title": "Settings",
+  "profile.title": "Profile",
+  "chat.title": "Chat",
+  "support.title": "Support",
+  
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "common.edit": "Edit",
+  "common.delete": "Delete",
+  "common.create": "Create",
+  
+  "auth.login": "Login",
+  "auth.logout": "Logout",
+  "auth.email": "Email",
+  "auth.password": "Password"
+}

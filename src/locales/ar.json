@@ -1,0 +1,21 @@
+{
+  "app.title": "نظام إدارة التدريب",
+  "dashboard.title": "لوحة التحكم",
+  "workouts.title": "التمارين",
+  "nutrition.title": "التغذية",
+  "settings.title": "الإعدادات",
+  "profile.title": "الملف الشخصي",
+  "chat.title": "المحادثات",
+  "support.title": "الدعم",
+  
+  "common.save": "حفظ",
+  "common.cancel": "إلغاء",
+  "common.edit": "تعديل",
+  "common.delete": "حذف",
+  "common.create": "إنشاء",
+  
+  "auth.login": "تسجيل الدخول",
+  "auth.logout": "تسجيل الخروج",
+  "auth.email": "البريد الإلكتروني",
+  "auth.password": "كلمة المرور"
+}
