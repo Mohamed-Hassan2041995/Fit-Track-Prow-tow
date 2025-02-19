@@ -1,33 +1,47 @@
+// هذا الكود يمثل تعريفًا لواجهة (Interface) `Database`، والتي تُستخدم لوصف هيكل قاعدة البيانات العامة (public).
+// تحتوي قاعدة البيانات على مجموعة من الجداول (Tables)، ويُعرّف هذا الكود جدول "users" (المستخدمين) مع تفاصيل الحقول المختلفة.
+// يتم تقسيم الحقول إلى ثلاثة أنواع:
+// 1. `Row`: يمثل البيانات كما هي مخزنة في قاعدة البيانات.
+// 2. `Insert`: يحدد الحقول المطلوبة عند إدخال بيانات جديدة.
+// 3. `Update`: يحدد الحقول التي يمكن تعديلها عند تحديث بيانات المستخدم.
+// يمكن توسيع هذه الواجهة بإضافة جداول أخرى بنفس البنية.
+
 export interface Database {
   public: {
     Tables: {
       users: {
+        // `Row` يمثل البيانات كما يتم تخزينها في قاعدة البيانات.
         Row: {
-          id: string;
-          email: string;
-          first_name: string;
-          last_name: string;
-          role: string;
-          gender: string;
-          created_at: string;
+          id: string; // معرف المستخدم (فريد لكل مستخدم).
+          email: string; // البريد الإلكتروني للمستخدم.
+          first_name: string; // الاسم الأول للمستخدم.
+          last_name: string; // الاسم الأخير للمستخدم.
+          role: string; // دور المستخدم في النظام (مثل مشرف أو مستخدم عادي).
+          gender: string; // جنس المستخدم (ذكر / أنثى).
+          created_at: string; // تاريخ إنشاء الحساب.
         };
+
+        // `Insert` يحدد الحقول المطلوبة عند إدخال بيانات مستخدم جديد.
         Insert: {
-          id?: string;
-          email: string;
-          first_name: string;
-          last_name: string;
-          role: string;
-          gender: string;
+          id?: string; // معرف المستخدم (يمكن أن يتم توليده تلقائيًا).
+          email: string; // البريد الإلكتروني مطلوب.
+          first_name: string; // الاسم الأول مطلوب.
+          last_name: string; // الاسم الأخير مطلوب.
+          role: string; // يجب تحديد دور المستخدم.
+          gender: string; // تحديد الجنس مطلوب.
         };
+
+        // `Update` يحدد الحقول التي يمكن تعديلها عند تحديث بيانات المستخدم.
         Update: {
-          email?: string;
-          first_name?: string;
-          last_name?: string;
-          role?: string;
-          gender?: string;
+          email?: string; // يمكن تحديث البريد الإلكتروني.
+          first_name?: string; // يمكن تحديث الاسم الأول.
+          last_name?: string; // يمكن تحديث الاسم الأخير.
+          role?: string; // يمكن تحديث دور المستخدم.
+          gender?: string; // يمكن تحديث الجنس.
         };
       };
-      // أضف باقي تعريفات الجداول هنا
+
+      // أضف باقي تعريفات الجداول هنا عند الحاجة.
     };
   };
 }

@@ -1,24 +1,54 @@
+/**
+ * هذا الكود يعرّف التمارين الرياضية وخطط التمارين للمتدربين.
+ *
+ * 1. `Exercise` هو `interface` يمثل تمرينًا رياضيًا فرديًا داخل الخطة، ويحتوي على:
+ *    - `id`: معرف فريد للتمرين.
+ *    - `name`: اسم التمرين.
+ *    - `sets`: عدد المجموعات المطلوبة للتمرين.
+ *    - `reps`: عدد التكرارات لكل مجموعة.
+ *    - `weight` (اختياري): الوزن المستخدم في التمرين (بالكيلوغرامات مثلًا).
+ *    - `duration` (اختياري): مدة التمرين بالثواني أو الدقائق (مثلًا تمرين الكارديو).
+ *    - `notes` (اختياري): ملاحظات إضافية حول التمرين، مثل النصائح أو التعديلات.
+ *
+ * 2. `WorkoutPlan` هو `interface` يمثل خطة تمرين كاملة لمتدرب معين، ويحتوي على:
+ *    - `id`: معرف فريد للخطة.
+ *    - `traineeId`: معرف المتدرب الذي تخصه الخطة.
+ *    - `trainerId`: معرف المدرب المسؤول عن إنشاء الخطة.
+ *    - `name`: اسم خطة التمرين.
+ *    - `description`: وصف موجز للخطة التدريبية.
+ *    - `exercises`: قائمة بالتمارين المندرجة ضمن الخطة (كل عنصر هو `Exercise`).
+ *    - `startDate`: تاريخ بدء الخطة.
+ *    - `endDate`: تاريخ انتهاء الخطة.
+ *    - `frequency`: عدد مرات تنفيذ التمارين في الأسبوع، مثل ["Monday", "Wednesday", "Friday"].
+ *    - `status`: حالة الخطة، ويمكن أن تكون:
+ *      - `active`: الخطة قيد التنفيذ.
+ *      - `completed`: الخطة مكتملة.
+ *      - `cancelled`: تم إلغاؤها.
+ *    - `createdAt`: تاريخ إنشاء الخطة.
+ *    - `updatedAt`: تاريخ آخر تحديث للخطة.
+ */
+
 export interface Exercise {
-  id: string;
-  name: string;
-  sets: number;
-  reps: number;
-  weight?: number;
-  duration?: number;
-  notes?: string;
+  id: string; // معرف فريد للتمرين
+  name: string; // اسم التمرين
+  sets: number; // عدد المجموعات المطلوبة
+  reps: number; // عدد التكرارات لكل مجموعة
+  weight?: number; // الوزن المستخدم في التمرين (اختياري)
+  duration?: number; // مدة التمرين بالثواني أو الدقائق (اختياري)
+  notes?: string; // ملاحظات إضافية حول التمرين (اختياري)
 }
 
 export interface WorkoutPlan {
-  id: string;
-  traineeId: string;
-  trainerId: string;
-  name: string;
-  description: string;
-  exercises: Exercise[];
-  startDate: Date;
-  endDate: Date;
-  frequency: string[];
-  status: 'active' | 'completed' | 'cancelled';
-  createdAt: Date;
-  updatedAt: Date;
+  id: string; // معرف فريد للخطة التدريبية
+  traineeId: string; // معرف المتدرب المرتبط بالخطة
+  trainerId: string; // معرف المدرب المسؤول عن إعداد الخطة
+  name: string; // اسم خطة التمرين
+  description: string; // وصف مختصر للخطة التدريبية
+  exercises: Exercise[]; // قائمة التمارين المندرجة ضمن الخطة
+  startDate: Date; // تاريخ بدء الخطة التدريبية
+  endDate: Date; // تاريخ انتهاء الخطة التدريبية
+  frequency: string[]; // عدد مرات تنفيذ التمارين خلال الأسبوع
+  status: "active" | "completed" | "cancelled"; // حالة الخطة التدريبية
+  createdAt: Date; // تاريخ إنشاء الخطة التدريبية
+  updatedAt: Date; // تاريخ آخر تحديث للخطة التدريبية
 }

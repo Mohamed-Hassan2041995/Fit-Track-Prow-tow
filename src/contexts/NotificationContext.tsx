@@ -1,45 +1,58 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import { Alert, Snackbar } from '@mui/material';
+import React, { createContext, useContext, useState, useCallback } from "react";
+import { Alert, Snackbar } from "@mui/material";
 
+// تعريف نوع الإشعار
 interface Notification {
-  id: string;
-  message: string;
-  type: 'success' | 'error' | 'info' | 'warning';
+  id: string; // معرف الإشعار
+  message: string; // رسالة الإشعار
+  type: "success" | "error" | "info" | "warning"; // نوع الإشعار
 }
 
+// تعريف واجهة سياق الإشعار
 interface NotificationContextType {
-  showNotification: (message: string, type: Notification['type']) => void;
+  showNotification: (message: string, type: Notification["type"]) => void; // دالة لإظهار الإشعار
 }
 
-const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
+// إنشاء سياق الإشعار
+const NotificationContext = createContext<NotificationContextType | undefined>(
+  undefined
+);
 
-export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [notification, setNotification] = useState<Notification | null>(null);
+// مزود سياق الإشعار
+export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [notification, setNotification] = useState<Notification | null>(null); // حالة الإشعار
 
-  const showNotification = useCallback((message: string, type: Notification['type']) => {
-    setNotification({
-      id: Date.now().toString(),
-      message,
-      type,
-    });
-  }, []);
+  // دالة لإظهار الإشعار
+  const showNotification = useCallback(
+    (message: string, type: Notification["type"]) => {
+      setNotification({
+        id: Date.now().toString(), // تعيين معرف فريد للإشعار
+        message, // تعيين الرسالة
+        type, // تعيين النوع
+      });
+    },
+    []
+  );
 
+  // دالة لإغلاق الإشعار
   const handleClose = () => {
-    setNotification(null);
+    setNotification(null); // إعادة تعيين حالة الإشعار إلى null عند الإغلاق
   };
 
   return (
     <NotificationContext.Provider value={{ showNotification }}>
-      {children}
+      {children} {/* تقديم الأطفال مع سياق الإشعار */}
       <Snackbar
-        open={!!notification}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        open={!!notification} // فتح Snackbar إذا كان هناك إشعار
+        autoHideDuration={6000} // إخفاء الإشعار تلقائيًا بعد 6 ثوانٍ
+        onClose={handleClose} // إغلاق الإشعار عند انتهاء الوقت أو عند النقر
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }} // مكان ظهور Snackbar
       >
-        {notification && (
+        {notification && ( // إذا كان هناك إشعار، قم بعرضه
           <Alert onClose={handleClose} severity={notification.type}>
-            {notification.message}
+            {notification.message} {/* عرض رسالة الإشعار */}
           </Alert>
         )}
       </Snackbar>
@@ -47,10 +60,13 @@ export const NotificationProvider: React.FC<{ children: React.ReactNode }> = ({ 
   );
 };
 
+// دالة مخصصة لاستخدام سياق الإشعار
 export const useNotification = () => {
   const context = useContext(NotificationContext);
   if (context === undefined) {
-    throw new Error('useNotification must be used within a NotificationProvider');
+    throw new Error(
+      "useNotification must be used within a NotificationProvider" // إذا لم يتم استخدام useNotification داخل NotificationProvider، إرجاع خطأ
+    );
   }
-  return context;
+  return context; // إرجاع سياق الإشعار
 };

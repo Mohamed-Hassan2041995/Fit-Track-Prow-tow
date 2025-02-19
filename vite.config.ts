@@ -1,5 +1,19 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+/*
+  هذا الكود يقوم بتعريف إعدادات مشروع Vite الخاص بتطبيق React. 
+  Vite هو أداة لبناء التطبيقات الحديثة تسمح بتطوير سريع وتحسين الأداء. 
+  يتم استخدام هذا الملف لتحديد إعدادات الخادم، وإعدادات البناء، والإضافات المستخدمة في المشروع.
+
+  - يتم استيراد الدالة `defineConfig` من Vite، وهي دالة تساعد في تحديد الإعدادات بشكل منظم.
+  - يتم استيراد الإضافة `@vitejs/plugin-react` التي تدعم استخدام React مع Vite.
+
+  الإعدادات الرئيسية:
+  - `plugins`: يحدد الإضافات المستخدمة في المشروع، وهنا نستخدم إضافة React.
+  - `server`: يحتوي على إعدادات الخادم مثل رقم المنفذ وفتح المتصفح تلقائيًا عند بدء التشغيل.
+  - `build`: يحتوي على إعدادات البناء مثل دليل الإخراج وملفات الخرائط المصدرية.
+*/
+
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
@@ -8,7 +22,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     sourcemap: true,
   },
 });

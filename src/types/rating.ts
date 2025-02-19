@@ -1,20 +1,27 @@
+// هذا الكود يعرّف واجهتين (Interfaces) تُستخدمان في نظام التقييم داخل التطبيق
+// لتخزين بيانات التقييمات والمراجعات بين المستخدمين، سواء بين المدربين والمتدربين
+// أو بين المتدربين أنفسهم، بالإضافة إلى تحليل الإحصائيات المتعلقة بالتقييمات
+
+// الواجهة Rating تمثل تقييم فردي قام به مستخدم لآخر، يشمل درجة التقييم ورأي المستخدم
+// الواجهة RatingStats تمثل إحصائيات التقييمات العامة، مثل متوسط التقييم وعدد التقييمات وتوزيع الدرجات
+
 export interface Rating {
-  id: string;
-  fromUserId: string;
-  toUserId: string;
-  score: number;
-  feedback: string;
-  createdAt: Date;
+  id: string; // معرف فريد للتقييم
+  fromUserId: string; // معرف المستخدم الذي قام بإعطاء التقييم
+  toUserId: string; // معرف المستخدم الذي تلقى التقييم
+  score: number; // درجة التقييم من 1 إلى 5
+  feedback: string; // نص المراجعة أو التعليق المقدم مع التقييم
+  createdAt: Date; // تاريخ إنشاء التقييم
 }
 
 export interface RatingStats {
-  averageScore: number;
-  totalRatings: number;
+  averageScore: number; // متوسط درجة التقييم لجميع التقييمات
+  totalRatings: number; // إجمالي عدد التقييمات المستلمة
   breakdown: {
-    5: number;
-    4: number;
-    3: number;
-    2: number;
-    1: number;
+    5: number; // عدد التقييمات الحاصلة على 5 نجوم
+    4: number; // عدد التقييمات الحاصلة على 4 نجوم
+    3: number; // عدد التقييمات الحاصلة على 3 نجوم
+    2: number; // عدد التقييمات الحاصلة على 2 نجمة
+    1: number; // عدد التقييمات الحاصلة على 1 نجمة
   };
 }

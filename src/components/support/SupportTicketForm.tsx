@@ -1,4 +1,7 @@
-import React from 'react';
+// هذا الكمبوننت يقوم بإنشاء نموذج لتذكرة دعم، حيث يمكن للمستخدم إدخال عنوان التذكرة، وصفها، أولويتها، وفئتها.
+// يتم استخدام مكتبة Formik لإدارة حالة النموذج والتحقق من الصحة باستخدام مكتبة Yup.
+
+import React from "react";
 import {
   Box,
   TextField,
@@ -6,110 +9,118 @@ import {
   MenuItem,
   Typography,
   Paper,
-} from '@mui/material';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+} from "@mui/material";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
+// تعريف نوع التذكرة للدعم
 interface SupportTicket {
-  title: string;
-  description: string;
-  priority: 'low' | 'medium' | 'high';
-  category: 'technical' | 'billing' | 'general';
+  title: string; // عنوان التذكرة
+  description: string; // وصف التذكرة
+  priority: "low" | "medium" | "high"; // أولوية التذكرة
+  category: "technical" | "billing" | "general"; // فئة التذكرة
 }
 
+// تعريف مخطط التحقق من صحة البيانات المدخلة باستخدام Yup
 const validationSchema = Yup.object({
-  title: Yup.string().required('Required'),
-  description: Yup.string().required('Required'),
-  priority: Yup.string().required('Required'),
-  category: Yup.string().required('Required'),
+  title: Yup.string().required("مطلوب"), // التحقق من أن العنوان مطلوب
+  description: Yup.string().required("مطلوب"), // التحقق من أن الوصف مطلوب
+  priority: Yup.string().required("مطلوب"), // التحقق من أن الأولوية مطلوبة
+  category: Yup.string().required("مطلوب"), // التحقق من أن الفئة مطلوبة
 });
 
+// كمبوننت نموذج تذكرة الدعم
 const SupportTicketForm: React.FC = () => {
+  // إعداد Formik لإدارة حالة النموذج
   const formik = useFormik({
     initialValues: {
-      title: '',
-      description: '',
-      priority: 'medium',
-      category: 'general',
+      title: "", // القيم الأولية للنموذج
+      description: "",
+      priority: "medium",
+      category: "general",
     },
     validationSchema,
     onSubmit: (values) => {
-      // TODO: Implement API call to create support ticket
-      console.log('Support ticket:', values);
+      // TODO: تنفيذ مكالمة API لإنشاء تذكرة الدعم
+      console.log("تذكرة الدعم:", values); // عرض القيم المدخلة في وحدة التحكم
     },
   });
 
   return (
     <Paper sx={{ p: 3 }}>
+      {" "}
+      {/* عنصر ورقة لتنسيق النموذج */}
       <Typography variant="h6" gutterBottom>
-        Create Support Ticket
+        إنشاء تذكرة دعم
       </Typography>
-
       <form onSubmit={formik.handleSubmit}>
+        {" "}
+        {/* معالجة تقديم النموذج */}
         <TextField
           fullWidth
           name="title"
-          label="Title"
+          label="العنوان" // نص العنوان
           value={formik.values.title}
           onChange={formik.handleChange}
-          error={formik.touched.title && Boolean(formik.errors.title)}
-          helperText={formik.touched.title && formik.errors.title}
-          sx={{ mb: 2 }}
+          error={formik.touched.title && Boolean(formik.errors.title)} // التحقق من وجود خطأ
+          helperText={formik.touched.title && formik.errors.title} // عرض رسالة الخطأ
+          sx={{ mb: 2 }} // تنسيق المسافة السفلية
         />
-
         <TextField
           fullWidth
           multiline
           rows={4}
           name="description"
-          label="Description"
+          label="الوصف" // نص الوصف
           value={formik.values.description}
           onChange={formik.handleChange}
-          error={formik.touched.description && Boolean(formik.errors.description)}
-          helperText={formik.touched.description && formik.errors.description}
-          sx={{ mb: 2 }}
+          error={
+            formik.touched.description && Boolean(formik.errors.description)
+          } // التحقق من وجود خطأ
+          helperText={formik.touched.description && formik.errors.description} // عرض رسالة الخطأ
+          sx={{ mb: 2 }} // تنسيق المسافة السفلية
         />
-
         <TextField
           fullWidth
           select
           name="priority"
-          label="Priority"
+          label="الأولوية" // نص الأولوية
           value={formik.values.priority}
           onChange={formik.handleChange}
-          error={formik.touched.priority && Boolean(formik.errors.priority)}
-          helperText={formik.touched.priority && formik.errors.priority}
-          sx={{ mb: 2 }}
+          error={formik.touched.priority && Boolean(formik.errors.priority)} // التحقق من وجود خطأ
+          helperText={formik.touched.priority && formik.errors.priority} // عرض رسالة الخطأ
+          sx={{ mb: 2 }} // تنسيق المسافة السفلية
         >
-          <MenuItem value="low">Low</MenuItem>
-          <MenuItem value="medium">Medium</MenuItem>
-          <MenuItem value="high">High</MenuItem>
+          <MenuItem value="low">منخفض</MenuItem> {/* خيار الأولوية المنخفضة */}
+          <MenuItem value="medium">متوسط</MenuItem>{" "}
+          {/* خيار الأولوية المتوسطة */}
+          <MenuItem value="high">مرتفع</MenuItem> {/* خيار الأولوية المرتفعة */}
         </TextField>
-
         <TextField
           fullWidth
           select
           name="category"
-          label="Category"
+          label="الفئة" // نص الفئة
           value={formik.values.category}
           onChange={formik.handleChange}
-          error={formik.touched.category && Boolean(formik.errors.category)}
-          helperText={formik.touched.category && formik.errors.category}
-          sx={{ mb: 2 }}
+          error={formik.touched.category && Boolean(formik.errors.category)} // التحقق من وجود خطأ
+          helperText={formik.touched.category && formik.errors.category} // عرض رسالة الخطأ
+          sx={{ mb: 2 }} // تنسيق المسافة السفلية
         >
-          <MenuItem value="technical">Technical</MenuItem>
-          <MenuItem value="billing">Billing</MenuItem>
-          <MenuItem value="general">General</MenuItem>
+          <MenuItem value="technical">تقني</MenuItem> {/* خيار الفئة التقنية */}
+          <MenuItem value="billing">فواتير</MenuItem> {/* خيار فئة الفواتير */}
+          <MenuItem value="general">عام</MenuItem> {/* خيار الفئة العامة */}
         </TextField>
-
         <Button
           type="submit"
-          variant="contained"
-          disabled={formik.isSubmitting}
+          variant="contained" // نمط الزر
+          disabled={formik.isSubmitting} // تعطيل الزر أثناء التقديم
         >
-          Submit Ticket
+          إرسال التذكرة
         </Button>
       </form>
     </Paper>
   );
 };
+
+export default SupportTicketForm; // تصدير الكمبوننت

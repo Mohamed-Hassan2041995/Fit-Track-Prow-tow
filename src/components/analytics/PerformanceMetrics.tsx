@@ -1,13 +1,12 @@
-import React from 'react';
-import {
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  LinearProgress,
-  Tooltip
-} from '@mui/material';
-import { PerformanceStats } from '../../types/analytics';
+/**
+ * PerformanceMetrics Component
+ * هذا الكومبوننت يعرض معدل الكثافة ومعدل الإنجاز باستخدام شريط تقدم (LinearProgress).
+ * يأخذ بيانات الأداء من `stats` ويعرضها بشكل مرئي.
+ */
+
+import React from "react";
+import { Grid, Paper, Typography, Box, LinearProgress } from "@mui/material";
+import { PerformanceStats } from "../../types/analytics";
 
 interface PerformanceMetricsProps {
   stats: PerformanceStats;
@@ -21,7 +20,7 @@ const PerformanceMetrics: React.FC<PerformanceMetricsProps> = ({ stats }) => {
           <Typography variant="h6" gutterBottom>
             معدل الكثافة
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             <Box sx={{ flexGrow: 1, mr: 1 }}>
               <LinearProgress
                 variant="determinate"
@@ -41,7 +40,7 @@ const PerformanceMetrics: React.FC<PerformanceMetricsProps> = ({ stats }) => {
           <Typography variant="h6" gutterBottom>
             معدل الإنجاز
           </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             <Box sx={{ flexGrow: 1, mr: 1 }}>
               <LinearProgress
                 variant="determinate"

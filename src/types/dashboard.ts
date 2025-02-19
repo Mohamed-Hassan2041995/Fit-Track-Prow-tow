@@ -1,22 +1,29 @@
+// هذا الكود يعرّف ثلاث واجهات (Interfaces) تُستخدم في نظام لوحة التحكم (Dashboard)
+// لتخزين بيانات الإحصائيات، ملخصات النظام، وسجل الأنشطة التي تحدث داخل التطبيق
+
+// الواجهة SystemMetric تمثل بيانات إحصائية يتم عرضها في لوحة التحكم
+// الواجهة DashboardSummary تمثل ملخصًا عامًا لحالة المستخدمين والخطط النشطة
+// الواجهة ActivityLog تمثل سجلاً يحتوي على جميع الأنشطة التي يقوم بها المستخدمون أو النظام
+
 export interface SystemMetric {
-  label: string;
-  value: number;
-  total: number;
-  color: string;
+  label: string; // اسم المقياس (مثال: "عدد المستخدمين النشطين")
+  value: number; // القيمة الحالية لهذا المقياس
+  total: number; // العدد الكلي لهذا المقياس (مثال: إجمالي عدد المستخدمين)
+  color: string; // لون يُستخدم لعرض هذا المقياس في لوحة التحكم (مثلاً في المخططات البيانية)
 }
 
 export interface DashboardSummary {
-  totalUsers: number;
-  activeTrainers: number;
-  activeTrainees: number;
-  activePlans: number;
+  totalUsers: number; // العدد الإجمالي للمستخدمين في النظام
+  activeTrainers: number; // عدد المدربين النشطين حاليًا
+  activeTrainees: number; // عدد المتدربين النشطين حاليًا
+  activePlans: number; // عدد الخطط التدريبية النشطة في الوقت الحالي
 }
 
 export interface ActivityLog {
-  id: string;
-  type: 'workout' | 'nutrition' | 'user' | 'system';
-  description: string;
-  timestamp: Date;
-  userId?: string;
-  metadata?: Record<string, any>;
+  id: string; // معرف فريد لكل نشاط
+  type: "workout" | "nutrition" | "user" | "system"; // نوع النشاط (تمرين، تغذية، مستخدم، أو نشاط خاص بالنظام)
+  description: string; // وصف مختصر للنشاط الذي تم تسجيله
+  timestamp: Date; // الوقت الذي حدث فيه النشاط
+  userId?: string; // (اختياري) معرف المستخدم الذي قام بالنشاط (إذا كان النشاط متعلقًا بمستخدم معين)
+  metadata?: Record<string, any>; // (اختياري) بيانات إضافية عن النشاط تُخزن في شكل كائن يحتوي على أي تفاصيل إضافية
 }

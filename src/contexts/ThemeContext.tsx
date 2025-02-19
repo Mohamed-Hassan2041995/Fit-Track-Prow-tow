@@ -1,45 +1,55 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles';
-import { useAuth } from './AuthContext';
-import { createGenderTheme } from '../theme/genderTheme';
+import React, { createContext, useContext, useState } from "react";
+import { ThemeProvider as MUIThemeProvider } from "@mui/material/styles";
+import { useAuth } from "./AuthContext";
+import { createGenderTheme } from "../theme/genderTheme";
 
+// تعريف نوع سياق السمات
 interface ThemeContextType {
-  mode: 'light' | 'dark';
-  toggleMode: () => void;
+  mode: "light" | "dark"; // وضع السمة (إضاءة أو ظلام)
+  toggleMode: () => void; // دالة لتبديل الوضع
 }
 
+// إنشاء سياق السمات
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user } = useAuth();
-  const [mode, setMode] = useState<'light' | 'dark'>(() => {
-    const savedMode = localStorage.getItem('themeMode');
-    return (savedMode as 'light' | 'dark') || 'light';
+// مزود سياق السمات
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const { user } = useAuth(); // الحصول على معلومات المستخدم من سياق المصادقة
+  const [mode, setMode] = useState<"light" | "dark">(() => {
+    const savedMode = localStorage.getItem("themeMode"); // استرجاع وضع السمة المحفوظ
+    return (savedMode as "light" | "dark") || "light"; // استخدام الوضع المحفوظ أو الوضع الافتراضي (إضاءة)
   });
 
-  const theme = createGenderTheme(user?.gender || 'male', mode);
+  // إنشاء سمة جديدة بناءً على الجنس والوضع
+  const theme = createGenderTheme(user?.gender || "male", mode);
 
+  // دالة لتبديل الوضع
   const toggleMode = () => {
     setMode((prevMode) => {
-      const newMode = prevMode === 'light' ? 'dark' : 'light';
-      localStorage.setItem('themeMode', newMode);
-      return newMode;
+      const newMode = prevMode === "light" ? "dark" : "light"; // التبديل بين الوضعين
+      localStorage.setItem("themeMode", newMode); // حفظ الوضع الجديد في التخزين المحلي
+      return newMode; // إرجاع الوضع الجديد
     });
   };
 
   return (
     <ThemeContext.Provider value={{ mode, toggleMode }}>
       <MUIThemeProvider theme={theme}>
-        {children}
+        {" "}
+        {/* تقديم السمة الجديدة للمكونات */}
+        {children} {/* تقديم الأطفال */}
       </MUIThemeProvider>
     </ThemeContext.Provider>
   );
 };
 
+// دالة مخصصة لاستخدام سياق السمات
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error("useTheme must be used within a ThemeProvider"); // إذا لم يتم استخدام useTheme داخل ThemeProvider، إرجاع خطأ
   }
-  return context;
+  return context; // إرجاع سياق السمات
 };

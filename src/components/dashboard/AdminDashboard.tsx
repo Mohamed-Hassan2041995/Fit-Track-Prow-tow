@@ -1,12 +1,11 @@
 /**
- * Admin dashboard component
- * Provides system overview and management tools
- * Features:
- * - System statistics
- * - User summaries
- * - Recent activities
- * - Performance metrics
- */
+ * مكون لوحة معلومات المسؤول
+ * يوفر نظرة عامة على النظام وأدوات الإدارة
+ * الميزات:
+ * - إحصائيات النظام
+ * - ملخصات المستخدم
+ * - الأنشطة الأخيرة
+ * - مقاييس الأداء */
 import React from "react";
 import { Grid, Paper, Typography, Box } from "@mui/material";
 import UsersSummary from "./summary/UsersSummary";

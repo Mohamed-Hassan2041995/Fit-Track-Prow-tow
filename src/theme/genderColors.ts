@@ -8,26 +8,26 @@
 export const genderColors = {
   male: {
     primary: {
-      main: '#1976d2',
-      light: '#42a5f5',
-      dark: '#1565c0',
+      main: "#1976d2", // اللون الرئيسي للذكور
+      light: "#42a5f5", // لون رئيسي فاتح للذكور
+      dark: "#1565c0", // لون رئيسي داكن للذكور
     },
     secondary: {
-      main: '#9c27b0',
-      light: '#ba68c8',
-      dark: '#7b1fa2',
+      main: "#9c27b0", // اللون الثانوي للذكور
+      light: "#ba68c8", // لون ثانوي فاتح للذكور
+      dark: "#7b1fa2", // لون ثانوي داكن للذكور
     },
   },
   female: {
     primary: {
-      main: '#e91e63',
-      light: '#f48fb1',
-      dark: '#c2185b',
+      main: "#e91e63", // اللون الرئيسي للإناث
+      light: "#f48fb1", // لون رئيسي فاتح للإناث
+      dark: "#c2185b", // لون رئيسي داكن للإناث
     },
     secondary: {
-      main: '#9c27b0',
-      light: '#ce93d8',
-      dark: '#7b1fa2',
+      main: "#9c27b0", // اللون الثانوي للإناث
+      light: "#ce93d8", // لون ثانوي فاتح للإناث
+      dark: "#7b1fa2", // لون ثانوي داكن للإناث
     },
   },
 };

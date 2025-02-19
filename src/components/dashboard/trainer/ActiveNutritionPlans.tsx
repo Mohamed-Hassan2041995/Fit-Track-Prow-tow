@@ -1,66 +1,67 @@
-import React from 'react';
+// هذا الكمبوننت يعرض خطط التغذية النشطة، مع معلومات عن المتدرب وتواريخ البدء والانتهاء، بالإضافة إلى خيارات للتحرير والحذف.
+import React from "react";
 import {
   Box,
   Typography,
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
   IconButton,
   Chip,
-} from '@mui/material';
-import { Edit, Delete } from '@mui/icons-material';
+} from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
 
+// تعريف واجهة خطة التغذية
 interface NutritionPlan {
-  id: string;
-  traineeName: string;
-  startDate: string;
-  endDate: string;
-  status: 'active' | 'completed' | 'upcoming';
+  id: string; // معرف الخطة
+  traineeName: string; // اسم المتدرب
+  startDate: string; // تاريخ البدء
+  endDate: string; // تاريخ الانتهاء
+  status: "active" | "completed" | "upcoming"; // حالة الخطة
 }
 
 const ActiveNutritionPlans: React.FC = () => {
   const plans: NutritionPlan[] = [
     {
-      id: '1',
-      traineeName: 'John Doe',
-      startDate: '2023-08-01',
-      endDate: '2023-09-01',
-      status: 'active',
+      id: "1",
+      traineeName: "John Doe",
+      startDate: "2023-08-01",
+      endDate: "2023-09-01",
+      status: "active",
     },
     {
-      id: '2',
-      traineeName: 'Jane Smith',
-      startDate: '2023-08-15',
-      endDate: '2023-09-15',
-      status: 'upcoming',
+      id: "2",
+      traineeName: "Jane Smith",
+      startDate: "2023-08-15",
+      endDate: "2023-09-15",
+      status: "upcoming",
     },
   ];
 
   return (
     <Box>
       <Typography variant="h6" gutterBottom>
-        Nutrition Plans
+        خطط التغذية
       </Typography>
       <List>
         {plans.map((plan) => (
           <ListItem
             key={plan.id}
             sx={{
-              border: '1px solid #e0e0e0',
+              border: "1px solid #e0e0e0",
               borderRadius: 1,
               mb: 1,
-              '&:last-child': { mb: 0 },
+              "&:last-child": { mb: 0 },
             }}
           >
             <ListItemText
               primary={plan.traineeName}
               secondary={`${plan.startDate} - ${plan.endDate}`}
             />
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <Chip
                 label={plan.status}
-                color={plan.status === 'active' ? 'success' : 'default'}
+                color={plan.status === "active" ? "success" : "default"}
                 size="small"
               />
               <IconButton size="small">

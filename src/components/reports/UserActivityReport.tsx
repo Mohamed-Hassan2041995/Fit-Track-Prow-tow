@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Paper,
   Typography,
   Grid,
-  TextField,
   Button,
   Box,
   Table,
@@ -11,26 +10,41 @@ import {
   TableCell,
   TableHead,
   TableRow,
-} from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers';
-import { useReports } from '../../hooks/useReports';
-import CustomLoader from '../common/CustomLoader';
+} from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+import { useReports } from "../../hooks/useReports";
+import CustomLoader from "../common/CustomLoader";
 
+// تعريف واجهة الخصائص الخاصة بالمكون
 interface UserActivityReportProps {
   userId: string;
-  userType: 'trainer' | 'trainee';
+  userType: "trainer" | "trainee";
 }
 
-const UserActivityReport: React.FC<UserActivityReportProps> = ({ userId, userType }) => {
+/**
+ * مكون UserActivityReport يعرض تقرير نشاط المستخدم بناءً على الفترة الزمنية المحددة.
+ * يعتمد على hook `useReports` لجلب بيانات التقرير.
+ */
+const UserActivityReport: React.FC<UserActivityReportProps> = ({
+  userId,
+  userType,
+}) => {
+  // حالات لتحديد نطاق التاريخ
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+
+  // استخدام Hook مخصص لجلب بيانات التقرير
   const { generateReport, loading, reportData } = useReports();
 
+  /**
+   * دالة تقوم بتوليد التقرير بناءً على التواريخ المحددة.
+   */
   const handleGenerateReport = async () => {
     if (!startDate || !endDate) return;
     await generateReport(userId, userType, startDate, endDate);
   };
 
+  // عرض لودر أثناء تحميل البيانات
   if (loading) return <CustomLoader />;
 
   return (
@@ -39,6 +53,7 @@ const UserActivityReport: React.FC<UserActivityReportProps> = ({ userId, userTyp
         تقرير نشاط المستخدم
       </Typography>
 
+      {/* اختيار الفترة الزمنية */}
       <Grid container spacing={2} sx={{ mb: 3 }}>
         <Grid item xs={12} sm={5}>
           <DatePicker
@@ -68,6 +83,7 @@ const UserActivityReport: React.FC<UserActivityReportProps> = ({ userId, userTyp
         </Grid>
       </Grid>
 
+      {/* عرض التقرير عند توفر البيانات */}
       {reportData && (
         <Box>
           <Typography variant="h6" gutterBottom>
@@ -86,7 +102,9 @@ const UserActivityReport: React.FC<UserActivityReportProps> = ({ userId, userTyp
                 <TableRow key={activity.id}>
                   <TableCell>{activity.type}</TableCell>
                   <TableCell>{activity.description}</TableCell>
-                  <TableCell>{new Date(activity.date).toLocaleDateString('ar-EG')}</TableCell>
+                  <TableCell>
+                    {new Date(activity.date).toLocaleDateString("ar-EG")}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
