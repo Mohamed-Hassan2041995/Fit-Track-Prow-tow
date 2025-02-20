@@ -52,7 +52,8 @@ const CustomLoader: React.FC = () => {
           animation: `${bounce} 1s ease-in-out infinite, ${rotate} 2s linear infinite`, // تطبيق تأثيرات الحركة
         }}
       />
-      <Box sx={{ mt: 2 }}>loading...</Box> {/* النص المعروض أثناء التحميل */}
+      <Box sx={{ mt: 2, color: "primary.main" }}>loading...</Box>{" "}
+      {/* النص المعروض أثناء التحميل */}
     </Box>
   );
 };

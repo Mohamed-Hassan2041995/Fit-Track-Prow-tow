@@ -70,7 +70,7 @@ const WorkoutPlansList: React.FC = () => {
             />
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               {" "}
-              // حاوية لعرض حالة الخطة وأزرار الإجراءات
+              {/* // حاوية لعرض حالة الخطة وأزرار الإجراءات */}
               <Chip
                 label={plan.status} // عرض حالة الخطة
                 color={plan.status === "active" ? "success" : "default"} // تغيير لون الشريحة حسب الحالة

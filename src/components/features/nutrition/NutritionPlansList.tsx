@@ -67,12 +67,12 @@ const NutritionPlansList: React.FC = () => {
               <>
                 <IconButton size="small">
                   {" "}
-                  // زر التعديل
+                  {/* // زر التعديل */}
                   <EditIcon />
                 </IconButton>
                 <IconButton size="small" color="error">
                   {" "}
-                  // زر الحذف
+                  {/* // زر الحذف */}
                   <DeleteIcon />
                 </IconButton>
               </>
