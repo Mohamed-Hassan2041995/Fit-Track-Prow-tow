@@ -26,6 +26,7 @@ import ChangePasswordDialog from "../users/ChangePasswordDialog";
 import AdminDashboardStats from "../../features/admin/components/AdminDashboardStats";
 import RevenueChart from "../../features/admin/components/RevenueChart";
 import SubscriptionDetails from "../../features/subscriptions/components/SubscriptionDetails";
+import ProgressChart from "../analytics/ProgressChart";
 // import RatingForm from "../../features/ratings/components/RatingForm";
 // import RatingForm from "../rating/RatingForm";
 // import RatingDisplay from "../rating/RatingDisplay";
@@ -140,6 +141,24 @@ const AdminDashboard: React.FC = () => {
       {/* <AdminDashboardStats /> */}
       {/* <RevenueChart data={[]} /> */}
       {/* <SubscriptionDetails subscription={undefined} /> */}
+      {/* <ProgressChart
+        data={{
+          trends: [
+            { date: "2024-03-01", value: 75 },
+            { date: "2024-03-02", value: 73 },
+            { date: "2024-03-03", value: 60 },
+            { date: "2024-03-04", value: 50 },
+            { date: "2024-03-05", value: 40 },
+            { date: "2024-03-06", value: 30 },
+            { date: "2024-03-07", value: 80 },
+          ],
+          strengthProgress: 80,
+          enduranceProgress: 70,
+          weightProgress: 60,
+          overallProgress: 72,
+        }}
+        title={"hd"}
+      /> */}
     </Box>
   );
 };

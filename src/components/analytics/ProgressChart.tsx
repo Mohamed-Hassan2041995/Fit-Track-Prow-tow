@@ -22,6 +22,8 @@ interface ProgressChartProps {
 }
 
 const ProgressChart: React.FC<ProgressChartProps> = ({ data, title }) => {
+  const trends = data.trends && data.trends.length > 0 ? data.trends : [];
+
   return (
     <Paper sx={{ p: 3 }}>
       {/* عنوان المخطط */}
@@ -32,21 +34,25 @@ const ProgressChart: React.FC<ProgressChartProps> = ({ data, title }) => {
       {/* حاوية المخطط البياني */}
       <Box sx={{ width: "100%", height: 300 }}>
         <ResponsiveContainer>
-          <LineChart data={data.trends}>
-            {" "}
-            {/* تمرير بيانات التقدم للمخطط */}
-            <CartesianGrid strokeDasharray="3 3" /> {/* خطوط الشبكة الخلفية */}
-            <XAxis dataKey="date" /> {/* محور X يعرض التواريخ */}
-            <YAxis /> {/* محور Y يعرض القيم */}
-            <Tooltip /> {/* عنصر يعرض تفاصيل البيانات عند تحريك الفأرة */}
-            <Legend /> {/* عنصر يوضح معنى كل خط في المخطط */}
-            <Line
-              type="monotone"
-              dataKey="value" // تمثيل القيم كنقاط متصلة
-              stroke="#8884d8" // لون الخط
-              activeDot={{ r: 8 }} // تخصيص نقطة التفاعل
-            />
-          </LineChart>
+          {trends.length > 0 ? (
+            <LineChart data={trends}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="#8884d8"
+                activeDot={{ r: 8 }}
+              />
+            </LineChart>
+          ) : (
+            <Typography variant="body2" color="text.secondary">
+              لا توجد بيانات لعرض المخطط
+            </Typography>
+          )}
         </ResponsiveContainer>
       </Box>
     </Paper>
