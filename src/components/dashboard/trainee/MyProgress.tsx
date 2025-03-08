@@ -16,8 +16,8 @@ const MyProgress: React.FC = () => {
   const metrics: ProgressMetric[] = [
     {
       label: "هدف الوزن",
-      current: 75,
-      target: 70,
+      current: 70,
+      target: 75,
       unit: "كجم",
       color: "#1976d2",
     },
@@ -57,7 +57,7 @@ const MyProgress: React.FC = () => {
               </Box>
               <LinearProgress
                 variant="determinate"
-                value={(metric.current / metric.target) * 100}
+                value={Math.min((metric.current / metric.target) * 100, 100)}
                 sx={{
                   height: 8,
                   borderRadius: 5,

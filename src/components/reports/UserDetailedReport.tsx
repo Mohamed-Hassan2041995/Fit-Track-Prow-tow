@@ -18,8 +18,8 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { useUserReport } from "../../hooks/useUserReport";
 import ActivityTimeline from "./sections/ActivityTimeline";
 import PerformanceMetrics from "./sections/PerformanceMetrics";
-import WorkoutSummary from "./sections/WorkoutSummary";
-import NutritionSummary from "./sections/NutritionSummary";
+// import WorkoutSummary from "./sections/WorkoutSummary";
+// import NutritionSummary from "./sections/NutritionSummary";
 
 // تعريف نوع البيانات لخاصية TabPanel التي تستخدم لعرض محتوى كل تبويب
 interface TabPanelProps {
@@ -120,11 +120,11 @@ const UserDetailedReport: React.FC<{
           </TabPanel>
 
           <TabPanel value={tabValue} index={2}>
-            <WorkoutSummary workouts={reportData.workouts} />
+            {/* <WorkoutSummary workouts={reportData.workouts} /> */}
           </TabPanel>
 
           <TabPanel value={tabValue} index={3}>
-            <NutritionSummary nutrition={reportData.nutrition} />
+            {/* <NutritionSummary nutrition={reportData.nutrition} /> */}
           </TabPanel>
         </>
       ) : (

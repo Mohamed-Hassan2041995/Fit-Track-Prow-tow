@@ -41,7 +41,7 @@ const ReportsPage: React.FC = () => {
   if (loading) return null; // عرض لا شيء أثناء تحميل التقارير
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
       <Typography variant="h4" gutterBottom>
         Reports
       </Typography>

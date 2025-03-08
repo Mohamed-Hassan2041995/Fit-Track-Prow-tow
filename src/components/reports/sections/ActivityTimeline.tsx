@@ -5,14 +5,13 @@
 // - يستخدم مكونات MUI Lab لإنشاء المخطط الزمني، مع تخصيص الألوان والأيقونات بناءً على نوع النشاط.
 
 import React from "react";
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-} from "@mui/lab"; // استيراد مكونات المخطط الزمني من MUI Lab
+import Timeline from "@mui/lab/Timeline";
+import TimelineItem from "@mui/lab/TimelineItem";
+import TimelineSeparator from "@mui/lab/TimelineSeparator";
+import TimelineConnector from "@mui/lab/TimelineConnector";
+import TimelineContent from "@mui/lab/TimelineContent";
+import TimelineDot from "@mui/lab/TimelineDot";
+// استيراد مكونات المخطط الزمني من MUI Lab
 import { Typography, Box, Chip } from "@mui/material"; // استيراد مكونات التصميم من MUI
 import {
   FitnessCenter,

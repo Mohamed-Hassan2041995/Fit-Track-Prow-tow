@@ -84,15 +84,18 @@ const SubscriptionPlanCard: React.FC<SubscriptionPlanCardProps> = ({
 
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="h5" gutterBottom>
-          {plan.name} // عرض اسم الخطة
+          {plan.name}
+          {/* // عرض اسم الخطة */}
         </Typography>
 
         <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
           <Typography variant="h4" component="span">
-            ${plan.price} // عرض سعر الخطة
+            ${plan.price}
+            {/* // عرض سعر الخطة */}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" sx={{ ml: 1 }}>
-            / {getTypeLabel()} // عرض نوع الخطة
+            / {getTypeLabel()}
+            {/* // عرض نوع الخطة */}
           </Typography>
         </Box>
 
@@ -107,13 +110,15 @@ const SubscriptionPlanCard: React.FC<SubscriptionPlanCardProps> = ({
         </Box>
 
         <Typography variant="body2" color="text.secondary" paragraph>
-          {plan.description} // عرض وصف الخطة
+          {plan.description}
+          {/* // عرض وصف الخطة */}
         </Typography>
 
         <List>
           <ListItem>
             <ListItemIcon>
-              <CheckCircle color="success" /> // أيقونة علامة النجاح
+              <CheckCircle color="success" />
+              {/* // أيقونة علامة النجاح */}
             </ListItemIcon>
             <ListItemText
               primary={`Access to ${
@@ -126,7 +131,8 @@ const SubscriptionPlanCard: React.FC<SubscriptionPlanCardProps> = ({
               <ListItemIcon>
                 <CheckCircle color="success" />
               </ListItemIcon>
-              <ListItemText primary="Personalized nutrition plan" /> // عرض خطة
+              <ListItemText primary="Personalized nutrition plan" />
+              {/* // عرض خطة */}
               تغذية شخصية إذا كانت الميزات تشمل كليهما
             </ListItem>
           )}
@@ -141,7 +147,8 @@ const SubscriptionPlanCard: React.FC<SubscriptionPlanCardProps> = ({
           onClick={() => onSubscribe(plan.id)} // عند الضغط، تنفيذ دالة الاشتراك
           disabled={isSubscribed} // تعطيل الزر إذا كان المستخدم مشتركًا بالفعل
         >
-          {isSubscribed ? "Current Plan" : "Subscribe Now"} // تغيير نص الزر حسب
+          {isSubscribed ? "Current Plan" : "Subscribe Now"}
+          {/* // تغيير نص الزر حسب */}
           حالة الاشتراك
         </Button>
       </CardActions>

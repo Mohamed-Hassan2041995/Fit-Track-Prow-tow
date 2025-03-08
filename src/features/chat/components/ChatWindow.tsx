@@ -97,3 +97,5 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     </Paper>
   );
 };
+
+export default ChatWindow;

@@ -22,13 +22,13 @@ const TrainerDashboard: React.FC = () => {
       </Typography>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={6}>
           <Paper sx={{ p: 3, height: "100%" }}>
             <TrainerStats />
           </Paper>
         </Grid>
 
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={6}>
           <Paper sx={{ p: 3, height: "100%" }}>
             <MyTraineesList />
           </Paper>

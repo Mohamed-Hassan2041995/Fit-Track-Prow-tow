@@ -19,6 +19,7 @@ import Navbar from "./components/layout/Navbar";
 import Sidebar from "./components/layout/Sidebar";
 import AppRoutes from "./routes/AppRoutes";
 import CustomLoader from "./components/common/CustomLoader";
+import Footer from "./components/layout/Footer";
 
 const App: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false); // حالة لإدارة فتح وإغلاق الشريط الجانبي
@@ -63,6 +64,7 @@ const App: React.FC = () => {
               </Box>
             </Box>
           </AuthProvider>
+          <Footer />
         </Router>
       )}
     </>

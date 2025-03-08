@@ -1,5 +1,6 @@
 // هذا الكمبوننت يمثل نافذة دردشة بين المستخدم الحالي والمستلم، حيث يسمح بإرسال واستقبال الرسائل. يتم عرض الرسائل في قائمة، ويُسمح للمستخدم بكتابة رسائل جديدة وإرسالها باستخدام زر الإرسال أو الضغط على مفتاح Enter.
 
+// test componants for chat the rel coponant in features folder
 import React, { useState, useEffect } from "react";
 import {
   Box,

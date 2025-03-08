@@ -43,7 +43,7 @@ const WorkoutPlans: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
         <Typography variant="h4">Workout Plans</Typography>
         {user?.role !== UserRole.TRAINEE && ( // عرض زر إنشاء خطة فقط إذا لم يكن المستخدم متدربًا

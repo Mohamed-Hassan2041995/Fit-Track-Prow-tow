@@ -1,11 +1,15 @@
 /**
- * مكون PerformanceMetrics يعرض إحصائيات أداء المستخدم في التطبيق.
- * يحتوي على ثلاثة أقسام رئيسية:
- * 1. معدل الإنجاز: يتم عرضه باستخدام شريط تقدم دائري CircularProgress.
- * 2. معدل الحضور: يتم عرضه باستخدام شريط تقدم خطي LinearProgress.
- * 3. تقدم الأهداف: يتم عرض قائمة بالأهداف مع شريط تقدم خطي لكل هدف.
+ * PerformanceMetrics
  *
- * يعتمد المكون على بيانات يتم تمريرها عبر الـ props من نوع PerformanceMetrics.
+ * هذا المكون يعرض مقاييس الأداء لمستخدم معين بناءً على بيانات يتم تمريرها إليه.
+ * يستخدم هذا المكون مجموعة من عناصر MUI مثل Grid، Paper، CircularProgress، و LinearProgress
+ * لعرض بيانات الأداء بطريقة منظمة وجذابة.
+ *
+ * المقاييس التي يتم عرضها:
+ * 1. معدل الإنجاز - يتم عرضه باستخدام دائرة تقدمية CircularProgress.
+ * 2. معدل الحضور - يتم عرضه باستخدام شريط تقدم LinearProgress.
+ * 3. معدل الكثافة - يتم عرضه باستخدام شريط تقدم LinearProgress.
+ * 4. تقدم الأهداف - يتم عرضه كمجموعة من الأهداف مع شريط تقدم لكل هدف.
  */
 
 import React from "react";
@@ -19,31 +23,29 @@ import {
 } from "@mui/material";
 import { PerformanceMetrics as Metrics } from "../../../types/analytics";
 
-// تعريف واجهة `PerformanceMetricsProps` التي تحتوي على بيانات الأداء المطلوبة لعرضها في المكون
+// تعريف واجهة الخصائص التي يستقبلها المكون
 interface PerformanceMetricsProps {
-  metrics: Metrics; // بيانات الأداء مثل معدل الإنجاز، معدل الحضور، وتقدم الأهداف
+  metrics: Metrics;
 }
 
-// مكون `PerformanceMetrics` المسؤول عن عرض الإحصائيات المختلفة لأداء المستخدم
 const PerformanceMetrics: React.FC<PerformanceMetricsProps> = ({ metrics }) => {
   return (
     <Grid container spacing={3}>
-      {/* القسم الأول: معدل الإنجاز */}
+      {/* معدل الإنجاز */}
       <Grid item xs={12} md={6}>
         <Paper sx={{ p: 3 }}>
           <Typography variant="h6" gutterBottom>
             معدل الإنجاز
           </Typography>
           <Box sx={{ position: "relative", display: "inline-flex" }}>
-            {/* عنصر CircularProgress لعرض معدل الإنجاز كنسبة مئوية */}
             <CircularProgress
               variant="determinate"
-              value={metrics.completionRate} // تحديد القيمة بناءً على البيانات المستلمة
+              value={metrics.completionRate}
               size={100}
               thickness={4}
               color="success"
             />
-            {/* صندوق يحتوي على النسبة المئوية بداخل الدائرة */}
+            {/* عرض القيمة داخل الدائرة */}
             <Box
               sx={{
                 top: 0,
@@ -57,52 +59,69 @@ const PerformanceMetrics: React.FC<PerformanceMetricsProps> = ({ metrics }) => {
               }}
             >
               <Typography variant="h6" component="div" color="text.secondary">
-                {`${Math.round(metrics.completionRate)}%`}{" "}
-                {/* عرض النسبة المئوية كنص */}
+                {`${Math.round(metrics.completionRate)}%`}
               </Typography>
             </Box>
           </Box>
         </Paper>
       </Grid>
 
-      {/* القسم الثاني: معدل الحضور */}
+      {/* معدل الحضور */}
       <Grid item xs={12} md={6}>
         <Paper sx={{ p: 3 }}>
           <Typography variant="h6" gutterBottom>
             معدل الحضور
           </Typography>
           <Box sx={{ mb: 2 }}>
-            {/* عرض معدل الحضور كنص */}
             <Typography color="text.secondary" gutterBottom>
               {metrics.attendanceRate}% معدل الحضور
             </Typography>
-            {/* عنصر LinearProgress لتمثيل معدل الحضور بشريط تقدم خطي */}
             <LinearProgress
               variant="determinate"
               value={metrics.attendanceRate}
-              sx={{ height: 8, borderRadius: 4 }} // ضبط الارتفاع وإضافة زوايا مستديرة
+              sx={{ height: 8, borderRadius: 4 }}
             />
           </Box>
         </Paper>
       </Grid>
 
-      {/* القسم الثالث: تقدم الأهداف */}
+      {/* معدل الكثافة */}
+      <Grid item xs={12} md={6}>
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h6" gutterBottom>
+            معدل الكثافة
+          </Typography>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+            <Box sx={{ flexGrow: 1, mr: 1 }}>
+              <LinearProgress
+                variant="determinate"
+                value={metrics.averageIntensity}
+                sx={{ height: 10, borderRadius: 5 }}
+              />
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              {metrics.averageIntensity}%
+            </Typography>
+          </Box>
+        </Paper>
+      </Grid>
+
+      {/* تقدم الأهداف */}
       <Grid item xs={12}>
         <Paper sx={{ p: 3 }}>
           <Typography variant="h6" gutterBottom>
             تقدم الأهداف
           </Typography>
-          {/* تكرار عبر قائمة الأهداف وعرض كل هدف مع نسبة تقدمه */}
           {metrics.goals.map((goal) => (
             <Box key={goal.name} sx={{ mb: 2 }}>
-              {/* عرض اسم الهدف ونسبة التقدم بجانب بعضهما */}
+              {/* اسم الهدف ونسبة الإنجاز */}
               <Box
                 sx={{ display: "flex", justifyContent: "space-between", mb: 1 }}
               >
                 <Typography>{goal.name}</Typography>
                 <Typography color="text.secondary">{goal.progress}%</Typography>
               </Box>
-              {/* عنصر LinearProgress لتمثيل نسبة تقدم كل هدف */}
+              {/* شريط التقدم الخاص بالهدف */}
               <LinearProgress
                 variant="determinate"
                 value={goal.progress}

@@ -23,7 +23,7 @@ interface ChatListProps {
 }
 
 // تعريف المكون
-export const ChatList: React.FC<ChatListProps> = ({
+const ChatList: React.FC<ChatListProps> = ({
   chats,
   onSelectChat,
   selectedChatId,
@@ -82,3 +82,5 @@ export const ChatList: React.FC<ChatListProps> = ({
     </List>
   );
 };
+
+export default ChatList;

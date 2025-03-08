@@ -11,8 +11,9 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
-import { useReports } from "../../hooks/useReports";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers"; // إضافة LocalizationProvider
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"; // استخدام المحول المناسب
+import useReports from "../../hooks/useReports";
 import CustomLoader from "../common/CustomLoader";
 
 // تعريف واجهة الخصائص الخاصة بالمكون
@@ -53,35 +54,38 @@ const UserActivityReport: React.FC<UserActivityReportProps> = ({
         تقرير نشاط المستخدم
       </Typography>
 
-      {/* اختيار الفترة الزمنية */}
-      <Grid container spacing={2} sx={{ mb: 3 }}>
-        <Grid item xs={12} sm={5}>
-          <DatePicker
-            label="من تاريخ"
-            value={startDate}
-            onChange={setStartDate}
-            slotProps={{ textField: { fullWidth: true } }}
-          />
+      {/* استخدام LocalizationProvider لتغليف مكونات DatePicker */}
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        {/* اختيار الفترة الزمنية */}
+        <Grid container spacing={2} sx={{ mb: 3 }}>
+          <Grid item xs={12} sm={5}>
+            <DatePicker
+              label="من تاريخ"
+              value={startDate}
+              onChange={setStartDate}
+              slotProps={{ textField: { fullWidth: true } }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={5}>
+            <DatePicker
+              label="إلى تاريخ"
+              value={endDate}
+              onChange={setEndDate}
+              slotProps={{ textField: { fullWidth: true } }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={handleGenerateReport}
+              disabled={!startDate || !endDate}
+            >
+              عرض التقرير
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={5}>
-          <DatePicker
-            label="إلى تاريخ"
-            value={endDate}
-            onChange={setEndDate}
-            slotProps={{ textField: { fullWidth: true } }}
-          />
-        </Grid>
-        <Grid item xs={12} sm={2}>
-          <Button
-            variant="contained"
-            fullWidth
-            onClick={handleGenerateReport}
-            disabled={!startDate || !endDate}
-          >
-            عرض التقرير
-          </Button>
-        </Grid>
-      </Grid>
+      </LocalizationProvider>
 
       {/* عرض التقرير عند توفر البيانات */}
       {reportData && (

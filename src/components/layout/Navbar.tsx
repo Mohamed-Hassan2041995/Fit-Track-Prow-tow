@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
         </IconButton>
 
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Fitness Training Management
+          FitTrack Pro{" "}
         </Typography>
 
         {user && (
@@ -164,7 +164,7 @@ const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Fitness Training Management
+FitTrack Pro
         </Typography>
 
         {user && (

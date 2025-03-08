@@ -26,7 +26,7 @@ interface ReportData {
 }
 
 // تعريف الهوك
-export const useReports = () => {
+const useReports = () => {
   const [loading, setLoading] = useState(false); // حالة التحميل
   const [reportData, setReportData] = useState<ReportData | null>(null); // بيانات التقرير
 
@@ -111,3 +111,5 @@ export const useReports = () => {
     generateReport,
   };
 };
+
+export default useReports;

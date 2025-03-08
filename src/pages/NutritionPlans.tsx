@@ -43,7 +43,7 @@ const NutritionPlans: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
       <Box sx={{ display: "flex", justifyContent: "space-between", mb: 4 }}>
         <Typography variant="h4">Nutrition Plans</Typography>
         {user?.role !== UserRole.TRAINEE && ( // تحقق من دور المستخدم
@@ -69,7 +69,7 @@ const NutritionPlans: React.FC = () => {
       >
         <NutritionPlanForm
           onSubmit={handleSavePlan} // دالة تنفيذ عند إرسال النموذج
-          onCancel={handleCloseDialog} // دالة تنفيذ عند إلغاء العملية
+          onClose={handleCloseDialog} // دالة تنفيذ عند إلغاء العملية
         />
       </Dialog>
     </Container>

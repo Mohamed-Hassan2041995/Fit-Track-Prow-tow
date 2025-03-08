@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container  maxWidth={"xl"} sx={{ mt: 4, mb: 4 }}>
       {/* عرض لوحة القيادة المناسبة بناءً على دور المستخدم */}
       {getDashboard()}
     </Container>

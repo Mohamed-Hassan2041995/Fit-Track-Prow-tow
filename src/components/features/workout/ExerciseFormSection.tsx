@@ -84,7 +84,8 @@ const ExerciseFormSection: React.FC<ExerciseFormSectionProps> = ({
             onClick={onRemove} // دالة لحذف التمرين عند النقر
             sx={{ mt: { xs: 1, sm: 0 } }} // ضبط الهامش العلوي حسب حجم الشاشة
           >
-            <DeleteIcon /> // أيقونة الحذف
+            <DeleteIcon />
+             {/* // أيقونة الحذف */}
           </IconButton>
         </Grid>
       </Grid>
