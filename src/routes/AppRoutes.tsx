@@ -14,6 +14,7 @@ import Settings from "../pages/Settings"; // استيراد صفحة الإعد�
 import AttendancePage from "../pages/AttendancePage"; // استيراد صفحة الحضور
 import Login from "../pages/Login"; // استيراد صفحة تسجيل الدخول
 import { UserRole } from "../types/user"; // استيراد أنواع المستخدمين
+import Profile from "../pages/Profile";
 
 const AppRoutes: React.FC = () => {
   const { isAuthenticated, hasPermission } = useAuth(); // الحصول على حالة المصادقة والأذونات من سياق المصادقة
@@ -38,6 +39,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/nutrition" element={<NutritionPlans />} />{" "}
       {/* مسار خطط التغذية */}
       <Route path="/attendance" element={<AttendancePage />} />{" "}
+      <Route path="/profile" element={<Profile />} />
+
       {/* مسار صفحة الحضور */}
       <Route
         path="/users"

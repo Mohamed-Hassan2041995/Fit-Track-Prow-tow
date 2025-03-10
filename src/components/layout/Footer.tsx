@@ -1,10 +1,27 @@
 import React from "react";
-import { Box, Container, Grid, Link, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Grid,
+  Link,
+  Typography,
+  useTheme,
+  alpha,
+} from "@mui/material";
+import { useTheme as useAppTheme } from "../../contexts/ThemeContext";
 
 const Footer = () => {
+  const theme = useTheme();
+
   return (
     <Box
       component="footer"
+      // sx={{
+      //   backgroundColor: alpha(theme.palette.background.paper, 0.8),
+      //   color: theme.palette.text.primary,
+      //   py: 3,
+      //   mt: 4,
+      // }}
       sx={{ backgroundColor: "#1e293b", color: "#ffffff", py: 3, mt: 4 }}
     >
       <Container maxWidth="lg">

@@ -47,10 +47,21 @@ const NotificationBell: React.FC = () => {
           horizontal: "right",
         }}
       >
-        <Box sx={{ width: 400, maxHeight: 500, overflow: "auto", p: 2 }}>
+        <Box
+          sx={{
+            width: { xs: "100%", sm: "400px" },
+            maxHeight: 500,
+            overflow: "auto",
+            p: 2,
+          }}
+        >
           {" "}
           {/* صندوق الإشعارات */}
-          <Typography variant="h6" gutterBottom>
+          <Typography
+            sx={{ position: "sticky", top: 0, marginBottom: "1rem" }}
+            variant="h6"
+            gutterBottom
+          >
             الإشعارات {/* عنوان صندوق الإشعارات */}
           </Typography>
           <NotificationsList

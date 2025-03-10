@@ -25,6 +25,7 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>; // دالة لتسجيل الدخول
   logout: () => void; // دالة لتسجيل الخروج
   hasPermission: (requiredRole: UserRole) => boolean; // دالة للتحقق من الأذونات
+  updateUser: (updatedUser: User) => void; // إضافة الخاصية هنا
 }
 
 // إنشاء سياق المصادقة

@@ -40,6 +40,12 @@ export enum UserRole {
 export type Gender = "male" | "female"; // تحديد نوع الجنس (ذكر أو أنثى)
 
 export interface User {
+  specialization: string;
+  experience: ReactNode;
+  certifications: any;
+  goals: any;
+  medicalConditions: any;
+  preferredTrainingTime: string;
   id: string; // معرف المستخدم الفريد
   email: string; // البريد الإلكتروني للمستخدم
   firstName: string; // الاسم الأول

@@ -23,10 +23,32 @@ export const formatDateTime = (date: Date | string): string => {
 };
 
 // دالة لحساب المدة الزمنية منذ تاريخ معين
-export const formatTimeAgo = (date: Date | string): string => {
-  return formatDistance(new Date(date), new Date(), { addSuffix: true }); // إعادة المدة الزمنية مع لاحقة
-};
+// export const formatTimeAgo = (date: Date | string): string => {
+//   return formatDistance(new Date(date), new Date(), { addSuffix: true }); // إعادة المدة الزمنية مع لاحقة
+// };
 
+// utils/formatters.ts
+export const formatTimeAgo = (time: string) => {
+  const date = new Date(time);
+  const now = new Date();
+  const diff = now.getTime() - date.getTime();
+
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (days > 0) {
+    return `${days} day${days > 1 ? "s" : ""} ago`;
+  }
+  if (hours > 0) {
+    return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+  }
+  if (minutes > 0) {
+    return `${minutes} minute${minutes > 1 ? "s" : ""} ago`;
+  }
+  return `${seconds} second${seconds > 1 ? "s" : ""} ago`;
+};
 // دالة لتنسيق الأرقام
 export const formatNumber = (num: number): string => {
   return new Intl.NumberFormat().format(num); // إعادة الرقم بتنسيق محلي
